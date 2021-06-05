@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    ".CodeMirror": [
+      {
+        "label": "Toggle surround-selection",
+        "command": "surround-selection:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Plugins",
+      "submenu": [
+        {
+          "label": "surround-selection",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "surround-selection:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
