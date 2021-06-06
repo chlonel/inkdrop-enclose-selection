@@ -4,6 +4,7 @@ import { Disposable } from 'event-kit';
 declare global {
   var inkdrop: {
     getActiveEditor: () => Editor;
+    isEditorActive: () => boolean;
     onEditorLoad: (callback: EditorCallback) => Disposable;
     onEditorUnload: (callback: EditorCallback) => Disposable;
   };
