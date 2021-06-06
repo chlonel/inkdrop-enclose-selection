@@ -1,10 +1,10 @@
 {
-  "name": "surround-selection",
+  "name": "enclose-selection",
   "main": "./lib/index",
   "version": "0.0.0",
   "description": "A short description of your package",
   "keywords": [],
-  "repository": "https://github.com/inkdropapp/surround-selection",
+  "repository": "https://github.com/inkdropapp/enclose-selection",
   "license": "MIT",
   "engines": {
     "inkdrop": "^5.x"
