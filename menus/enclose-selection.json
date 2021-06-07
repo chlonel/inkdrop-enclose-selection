@@ -2,8 +2,8 @@
   "context-menu": {
     ".CodeMirror": [
       {
-        "label": "Enclose with quote",
-        "command": "enclose-selection:quote"
+        "label": "Enclose with single quotes",
+        "command": "enclose-selection:single-quotes"
       }
     ]
   },
@@ -15,8 +15,8 @@
           "label": "enclose-selection",
           "submenu": [
             {
-              "label": "Enclose with quote",
-              "command": "enclose-selection:quote"
+              "label": "Enclose with single quotes",
+              "command": "enclose-selection:single-quotes"
             }
           ]
         }

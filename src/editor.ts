@@ -1,8 +1,9 @@
 import CodeMirror from 'codemirror';
 import { CompositeDisposable, Disposable } from 'event-kit';
-import { encloseSelections } from './enclose-selection';
+import { encloseSelections, ENCLOSURE_MAP } from './enclose-selection';
 import { addHasSelectionsClass, removeHasSelectionsClass, cursorActivityListener } from './has-selection-control';
 
+const NAMESPACE = 'enclose-selection';
 export class Editor extends Disposable {
   cm: CodeMirror.Editor;
   disposable: CompositeDisposable;
@@ -18,11 +19,13 @@ export class Editor extends Disposable {
 
   registerCommands() {
     const wrapper = this.cm.getWrapperElement();
-    const handlers = {
-      'enclose-selection:quote': () => {
-        encloseSelections(this.cm, "'", "'");
-      },
-    };
+    const handlers = Object.entries(ENCLOSURE_MAP).reduce((acc, [name, { left, right }]) => {
+      const commandName = `${NAMESPACE}:${name}`;
+      return {
+        ...acc,
+        [commandName]: () => encloseSelections(this.cm, left, right),
+      };
+    }, {} as Record<string, () => void>);
     this.disposable = inkdrop.commands.add(wrapper, handlers);
   }
 

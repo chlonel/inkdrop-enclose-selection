@@ -1,5 +1,11 @@
 {
   ".CodeMirror.has-selections": {
-    "'": "enclose-selection:quote"
+    "'": "enclose-selection:single-quotes",
+    "\"": "enclose-selection:double-quotes",
+    "`": "enclose-selection:backticks",
+    "(": "enclose-selection:parenthesis",
+    "{": "enclose-selection:curly-brackets",
+    "[": "enclose-selection:square-brackets",
+    "<": "enclose-selection:angle-brackets"
   }
 }

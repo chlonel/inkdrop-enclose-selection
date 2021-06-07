@@ -1,5 +1,19 @@
 import CodeMirror from 'codemirror';
 
+type EnclosureType = {
+  left: string;
+  right: string;
+};
+export const ENCLOSURE_MAP: Record<string, EnclosureType> = {
+  'single-quotes': { left: "'", right: "'" },
+  'double-quotes': { left: '"', right: '"' },
+  backticks: { left: '`', right: '`' },
+  parenthesis: { left: '(', right: ')' },
+  'curly-brackets': { left: '{', right: '}' },
+  'square-brackets': { left: '[', right: ']' },
+  'angle-brackets': { left: '<', right: '>' },
+};
+
 type PositionType = 'anchor' | 'head';
 const positionTypeArray: PositionType[] = ['anchor', 'head'];
 
