@@ -1,5 +1,5 @@
 {
-  "body": {
-    "ctrl-alt-o": "enclose-selection:toggle"
+  ".CodeMirror.has-selections": {
+    "'": "enclose-selection:quote"
   }
 }

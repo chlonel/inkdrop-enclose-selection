@@ -1,54 +1,24 @@
-import CodeMirror from 'codemirror';
+import { Disposable } from 'event-kit';
+import { Editor } from './editor';
 
-type PositionType = 'anchor' | 'head';
-const positionTypeArray: PositionType[] = ['anchor', 'head'];
+let disposable: Disposable | null = null;
+let editor: Editor | null = null;
 
-const leftEnclosure = "'";
-const rightEnclosure = "'";
-
-const keydownCallback = (cm: CodeMirror.Editor, event: KeyboardEvent) => {
-  const { key } = event;
-  if (key !== leftEnclosure) return;
-  if (!cm.somethingSelected()) return;
-
-  event.preventDefault();
-
-  const beforeReplacementSelections = cm.listSelections();
-  const selectionStrings = cm.getSelections();
-  const replacedSelections = selectionStrings.map(selectionString => leftEnclosure + selectionString + rightEnclosure);
-  cm.replaceSelections(replacedSelections);
-
-  const addedEnclosureCounter = {} as Record<number, number>;
-  const insideEnclosureSelections = beforeReplacementSelections.map(selection => {
-    const sortedPositionTypeArray = positionTypeArray.sort((a, b) => {
-      return selection[a].line - selection[b].line || selection[a].ch - selection[b].ch;
-    });
-    return sortedPositionTypeArray.reduce((acc, positionType, i) => {
-      const { line } = selection[positionType];
-      addedEnclosureCounter[line] = (addedEnclosureCounter[line] || 0) + 1;
-
-      const position = {
-        line: selection[positionType].line,
-        ch: selection[positionType].ch + addedEnclosureCounter[line],
-      };
-      if (i === 1) --position.ch;
-
-      return { ...acc, [positionType]: position };
-    }, {} as CodeMirror.Range);
-  });
-  cm.setSelections(insideEnclosureSelections);
-};
-
-export const activate = async () => {
+const waitEditorLoad = async () => {
   if (!inkdrop.isEditorActive()) {
     await new Promise(resolve => inkdrop.onEditorLoad(resolve));
   }
+};
 
-  const editor = inkdrop.getActiveEditor();
-  editor.cm.on('keydown', keydownCallback);
+export const activate = async () => {
+  await waitEditorLoad();
+  const { cm } = inkdrop.getActiveEditor()!;
+
+  editor = new Editor(cm);
+  disposable = inkdrop.onEditorUnload(() => editor!.dispose());
 };
 
 export const deactivate = () => {
-  const editor = inkdrop.getActiveEditor();
-  editor.cm.off('keydown', keydownCallback);
+  if (disposable) disposable.dispose();
+  if (editor) editor.dispose();
 };

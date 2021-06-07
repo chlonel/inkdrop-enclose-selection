@@ -2,8 +2,8 @@
   "context-menu": {
     ".CodeMirror": [
       {
-        "label": "Toggle enclose-selection",
-        "command": "enclose-selection:toggle"
+        "label": "Enclose with quote",
+        "command": "enclose-selection:quote"
       }
     ]
   },
@@ -15,8 +15,8 @@
           "label": "enclose-selection",
           "submenu": [
             {
-              "label": "Toggle",
-              "command": "enclose-selection:toggle"
+              "label": "Enclose with quote",
+              "command": "enclose-selection:quote"
             }
           ]
         }
