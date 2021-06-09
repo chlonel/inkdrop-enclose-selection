@@ -1,7 +1,7 @@
 {
   "name": "enclose-selection",
   "main": "./lib/index",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Enclose selection with parentheses, quotes, etc.",
   "keywords": [],
   "repository": "https://github.com/chlonel/inkdrop-enclose-selection.git",
