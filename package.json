@@ -2,9 +2,9 @@
   "name": "enclose-selection",
   "main": "./lib/index",
   "version": "0.0.0",
-  "description": "A short description of your package",
+  "description": "Enclose selection with parentheses, quotes, etc.",
   "keywords": [],
-  "repository": "https://github.com/inkdropapp/enclose-selection",
+  "repository": "https://github.com/chlonel/inkdrop-enclose-selection.git",
   "license": "MIT",
   "engines": {
     "inkdrop": "^5.x"
