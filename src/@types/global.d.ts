@@ -2,7 +2,7 @@ import CodeMirror from 'codemirror';
 import { CompositeDisposable, Disposable } from 'event-kit';
 
 declare global {
-  var inkdrop: {
+  const inkdrop: {
     commands: Commands;
     getActiveEditor: () => Editor | undefined;
     isEditorActive: () => boolean;
@@ -16,7 +16,10 @@ type Editor = {
 };
 
 type Commands = {
-  add: (element: HTMLElement, handlers: Record<string, () => void>) => CompositeDisposable;
+  add: (
+    element: HTMLElement,
+    handlers: Record<string, () => void>
+  ) => CompositeDisposable;
 };
 
 type EditorCallback = (editor: Editor) => any;
