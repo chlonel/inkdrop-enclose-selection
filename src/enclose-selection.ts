@@ -1,10 +1,11 @@
 import CodeMirror from 'codemirror';
 
-type EnclosureType = {
+type Enclosure = {
   left: string;
   right: string;
 };
-export const ENCLOSURE_MAP: Record<string, EnclosureType> = {
+
+export const ENCLOSURE_MAP: Record<string, Enclosure> = {
   'single-quotes': { left: "'", right: "'" },
   'double-quotes': { left: '"', right: '"' },
   backticks: { left: '`', right: '`' },
@@ -15,7 +16,7 @@ export const ENCLOSURE_MAP: Record<string, EnclosureType> = {
 };
 
 type PositionType = 'anchor' | 'head';
-const positionTypeArray: PositionType[] = ['anchor', 'head'];
+const positionTypes: PositionType[] = ['anchor', 'head'];
 
 export const encloseSelections = (cm: CodeMirror.Editor, leftEnclosure: string, rightEnclosure: string) => {
   const beforeReplacementSelections = cm.listSelections();
@@ -25,10 +26,10 @@ export const encloseSelections = (cm: CodeMirror.Editor, leftEnclosure: string, 
 
   const addedEnclosureCounter = {} as Record<number, number>;
   const insideEnclosureSelections = beforeReplacementSelections.map(selection => {
-    const sortedPositionTypeArray = positionTypeArray.sort((a, b) => {
+    const sortedPositionTypes = positionTypes.sort((a, b) => {
       return selection[a].line - selection[b].line || selection[a].ch - selection[b].ch;
     });
-    return sortedPositionTypeArray.reduce((acc, positionType, i) => {
+    return sortedPositionTypes.reduce((acc, positionType, i) => {
       const { line } = selection[positionType];
       addedEnclosureCounter[line] = (addedEnclosureCounter[line] || 0) + 1;
 
