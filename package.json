@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "watch": "tsc --watch",
+    "start": "tsc --watch",
     "lint": "eslint src && prettier --check src",
     "lint:fix": "eslint src --fix && prettier --write src"
   },
