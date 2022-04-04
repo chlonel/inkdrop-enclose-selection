@@ -11,7 +11,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "lint": "eslint src && prettier --check src",
+    "lint:fix": "eslint src --fix && prettier --write src"
   },
   "dependencies": {},
   "devDependencies": {
@@ -23,6 +25,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-react": "^7.29.4",
     "prettier": "^2.3.0",
     "typescript": "^4.3.2"
   }
