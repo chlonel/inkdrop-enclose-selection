@@ -1,4 +1,4 @@
-const HAS_SELECTIONS_CLASS = 'has-selections';
+const HAS_SELECTIONS_CLASS = 'enclose-selection:has-selections';
 
 export const addHasSelectionsClass = (cm: CodeMirror.Editor) => {
   cm.getWrapperElement().classList.add(HAS_SELECTIONS_CLASS);
