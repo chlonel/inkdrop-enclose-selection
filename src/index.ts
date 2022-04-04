@@ -6,7 +6,7 @@ let editor: Editor | null = null;
 
 const waitEditorLoad = async () => {
   if (!inkdrop.isEditorActive()) {
-    await new Promise(resolve => inkdrop.onEditorLoad(resolve));
+    await new Promise((resolve) => inkdrop.onEditorLoad(resolve));
   }
 };
 
